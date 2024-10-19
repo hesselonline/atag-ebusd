@@ -90,8 +90,7 @@ Please note here that the docker config refers to a specific config file for the
    - [hass_ebusd_mqtt_poll_energymgr.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_energymgr.yaml) This is a script to use in combination with Home Assistant to force a read of the energy manager sensors in the ebusd config.
    - [hass_ebusd_mqtt_poll_heatpump.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_heatpump.yaml) This is a script to use in combination with Home Assistant to force a read of the heatpump sensors in the ebusd config.
    - [hass_ebusd_mqtt_poll_specific.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_specific.yaml) This is a script to use in combination with Home Assistant to force a read of a specific sensor in the ebusd config.
-
-Use these scripts by copy-pasting there contents in a new script defined in Home Assistant. You can create these scripts in the Home Assistant UI by going to Settings -> Automations & Scenes -> Scripts -> Add script.
+     Use these scripts by copy-pasting there contents in a new script defined in Home Assistant. You can create these scripts in the Home Assistant UI by going to Settings -> Automations & Scenes -> Scripts -> Add script.
 
 ## Troubleshooting
 
@@ -104,7 +103,3 @@ You can use a tool like MQTT Explorer to check the MQTT topics and messages.
 ## Contributing
 
 Feel free to submit issues or pull requests if you encounter any problems or have suggestions for improvements.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
