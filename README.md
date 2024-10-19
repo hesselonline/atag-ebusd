@@ -1,17 +1,20 @@
 # ATAG-EBUSD
 
 This repository contains configuration files for using [ebusd](https://github.com/john30/ebusd) with an ATAG Energion heat pump setup. The data from the heat pump is extracted via an eBus adapter, published to an MQTT broker, and displayed in Home Assistant for real-time monitoring and control.
-The config and template files in this repository are based on the [Ariston config of wrongisthenewright](https://github.com/wrongisthenewright/ebusd-configuration-ariston-bridgenet). There is currently 1 config-file in this repository for an Energion Light Full Electric setup, the goal is to have other variants of the ATAG Energion heatpump in a seperate folder configuration file. Please create a pull request if you have a config or changes to share.
+
+The config and template files in this repository are based on the [Ariston config of wrongisthenewright](https://github.com/wrongisthenewright/ebusd-configuration-ariston-bridgenet).
+
+There is currently 1 config-file in this repository for an Energion Light Full Electric setup, the goal is to have other variants of the ATAG Energion heatpump in a seperate folder configuration file. Please create a pull request if you have a config or changes to share.
 
 ## Contents of this repository
 
-[atag_energion_lightb.csv](atag_energion_lightb/atag_energion_lightb.csv) This is the config for a ATAG Energion heatpump in combination with a Lightbox unit on the inside; quite a minimal setup, missing some hybrid codes / information.
-[\_templates.csv](atag_energion_lightb/_templates.csv) This is the template file for the ATAG Energion heatpump config, needed to define specific datatypes.
-[mqtt-hassio.cfg](mqtt-hassio.cfg) This is the config file for the MQTT broker, needed to define the MQTT topics directly in Home Assistant.
-[hass_ebusd_mqtt_poll_all.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_all.yaml) This is a script to use in combination with Home Assistant to force a read of all the sensors in the ebusd config.
-[hass_ebusd_mqtt_poll_energymgr.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_energymgr.yaml) This is a script to use in combination with Home Assistant to force a read of the energy manager sensors in the ebusd config.
-[hass_ebusd_mqtt_poll_heatpump.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_heatpump.yaml) This is a script to use in combination with Home Assistant to force a read of the heatpump sensors in the ebusd config.
-[hass_ebusd_mqtt_poll_specific.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_specific.yaml) This is a script to use in combination with Home Assistant to force a read of a specific sensor in the ebusd config.
+- [atag_energion_lightb.csv](atag_energion_lightb/atag_energion_lightb.csv) This is the config for a ATAG Energion heatpump in combination with a Lightbox unit on the inside; quite a minimal setup, missing some hybrid codes / information.
+- [\_templates.csv](atag_energion_lightb/_templates.csv) This is the template file for the ATAG Energion heatpump config, needed to define specific datatypes.
+- [mqtt-hassio.cfg](mqtt-hassio.cfg) This is the config file for the MQTT broker, needed to define the MQTT topics directly in Home Assistant.
+- [hass_ebusd_mqtt_poll_all.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_all.yaml) This is a script to use in combination with Home Assistant to force a read of all the sensors in the ebusd config.
+- [hass_ebusd_mqtt_poll_energymgr.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_energymgr.yaml) This is a script to use in combination with Home Assistant to force a read of the energy manager sensors in the ebusd config.
+- [hass_ebusd_mqtt_poll_heatpump.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_heatpump.yaml) This is a script to use in combination with Home Assistant to force a read of the heatpump sensors in the ebusd config.
+- [hass_ebusd_mqtt_poll_specific.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_specific.yaml) This is a script to use in combination with Home Assistant to force a read of a specific sensor in the ebusd config.
 
 ## Prerequisites
 
@@ -83,11 +86,12 @@ Please note here that the docker config refers to a specific config file for the
 
 5. Configure a Home Assistant script to refresh the data:
    Not all sensors are refreshed automatically, to force a refresh of the data you can use the following scripts in Home Assistant:
-   [hass_ebusd_mqtt_poll_all.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_all.yaml) This is a script to use in combination with Home Assistant to force a read of all the sensors in the ebusd config.
-   [hass_ebusd_mqtt_poll_energymgr.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_energymgr.yaml) This is a script to use in combination with Home Assistant to force a read of the energy manager sensors in the ebusd config.
-   [hass_ebusd_mqtt_poll_heatpump.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_heatpump.yaml) This is a script to use in combination with Home Assistant to force a read of the heatpump sensors in the ebusd config.
-   [hass_ebusd_mqtt_poll_specific.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_specific.yaml) This is a script to use in combination with Home Assistant to force a read of a specific sensor in the ebusd config.
-   Use these scripts by copy-pasting there contents in a new script defined in Home Assistant. You can create these scripts in the Home Assistant UI by going to Settings -> Automations & Scenes -> Scripts -> Add script.
+   - [hass_ebusd_mqtt_poll_all.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_all.yaml) This is a script to use in combination with Home Assistant to force a read of all the sensors in the ebusd config.
+   - [hass_ebusd_mqtt_poll_energymgr.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_energymgr.yaml) This is a script to use in combination with Home Assistant to force a read of the energy manager sensors in the ebusd config.
+   - [hass_ebusd_mqtt_poll_heatpump.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_heatpump.yaml) This is a script to use in combination with Home Assistant to force a read of the heatpump sensors in the ebusd config.
+   - [hass_ebusd_mqtt_poll_specific.yaml](homeassistant_scripts/hass_ebusd_mqtt_poll_specific.yaml) This is a script to use in combination with Home Assistant to force a read of a specific sensor in the ebusd config.
+
+Use these scripts by copy-pasting there contents in a new script defined in Home Assistant. You can create these scripts in the Home Assistant UI by going to Settings -> Automations & Scenes -> Scripts -> Add script.
 
 ## Troubleshooting
 
