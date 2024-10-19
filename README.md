@@ -34,10 +34,6 @@ services:
     restart: always
     volumes:
       - /volume1/docker/homeassistant/config:/config
-      - /volume1/docker/certificate:/le-ssl
-    devices:
-      - /dev/ttyUSB0
-      - /dev/ttyUSB1
     environment:
       - TZ=Europe/Amsterdam
     network_mode: host
