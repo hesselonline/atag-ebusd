@@ -1,0 +1,15 @@
+alias: Ebusd MQTT Poll Specific
+fields:
+  mqtt_topic:
+    selector:
+      text: null
+    name: mqtt_topic
+    description: MQTT Topic to refresh
+description: ""
+icon: mdi:source-branch-refresh
+sequence:
+  - action: mqtt.publish
+    data:
+      topic: ebusd/{{ mqtt_topic }}/get
+      payload: "?1"
+  - delay: "00:00:02"

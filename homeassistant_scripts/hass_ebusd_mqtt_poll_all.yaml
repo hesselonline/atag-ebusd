@@ -1,0 +1,75 @@
+alias: Ebusd MQTT Poll
+sequence:
+  - repeat:
+      for_each:
+        - energymgr/config_version_counter
+        - energymgr/dhw_pv_delta_t_setp
+        - energymgr/dhw_store_temp
+        - energymgr/electric_cost
+        - energymgr/ext_boiler_dhw_efficiency
+        - energymgr/ext_boiler_heat_efficiency
+        - energymgr/ext_temp_offset
+        - energymgr/heat_mode
+        - energymgr/heating_mode
+        - energymgr/hybrid_logic
+        - energymgr/hybrid_mode
+        - energymgr/hybrid_status
+        - energymgr/protech_anode
+        - energymgr/pump_antiblock
+        - energymgr/pv_electric_cost
+        - energymgr/z1_night_temp
+        - energymgr/z1_room_temp
+        - gateway/gateway_activation_state
+        - gateway/gateway_ntp
+        - gateway/gateway_sw_update
+        - gateway/gateway_wifi
+        - gateway/gateway_wifi_signal
+        - gateway/gateway_wifi_state
+        - heatpump/boost_time
+        - heatpump/config_version_counter
+        - heatpump/cool_ext_temp_offset
+        - heatpump/heatpump_3way_valve_dhw_heat
+        - heatpump/heatpump_3way_valve_heat_cool
+        - heatpump/heatpump_4way_valve_state
+        - heatpump/heatpump_anode
+        - heatpump/heatpump_base_pane_heater_state
+        - heatpump/heatpump_comp_discharge_temp
+        - heatpump/heatpump_compr_current
+        - heatpump/heatpump_compr_modulation
+        - heatpump/heatpump_compressor_state
+        - heatpump/heatpump_cond_pressure
+        - heatpump/heatpump_electric_heater
+        - heatpump/heatpump_evap_pressure
+        - heatpump/heatpump_evaporator_temp
+        - heatpump/heatpump_exp_valve
+        - heatpump/heatpump_ext_pump
+        - heatpump/heatpump_fan1_speed
+        - heatpump/heatpump_fan1_state
+        - heatpump/heatpump_fan2_speed
+        - heatpump/heatpump_fan2_state
+        - heatpump/heatpump_flow_switch
+        - heatpump/heatpump_info
+        - heatpump/heatpump_inverter_nominal_power
+        - heatpump/heatpump_last_error
+        - heatpump/heatpump_main_pump
+        - heatpump/heatpump_power_consumption
+        - heatpump/heatpump_preheater_state
+        - heatpump/heatpump_safety_thermostat
+        - heatpump/heatpump_shutoff_protection
+        - heatpump/pump_max_pwm
+        - heatpump/pump_min_pwm
+        - heatpump/pump_operation
+        - heatpump/silent_mode
+        - heatpump/heatpump_EWT_temp
+        - heatpump/heatpump_LWT_temp
+        - heatpump/heatpump_evaporator_temp
+        - heatpump/heatpump_suction_temp
+        - heatpump/heatpump_comp_discharge_temp
+        - heatpump/heatpump_condenser_outlet_temp
+        - heatpump/heatpump_flowmeter
+      sequence:
+        - action: mqtt.publish
+          data:
+            topic: ebusd/{{ repeat.item }}/get
+            payload: "?1"
+        - delay: "00:00:02"

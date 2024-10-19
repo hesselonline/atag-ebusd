@@ -1,0 +1,54 @@
+alias: Ebusd MQTT Poll Heatpump
+sequence:
+  - repeat:
+      for_each:
+        - heatpump/boost_time
+        - heatpump/config_version_counter
+        - heatpump/cool_ext_temp_offset
+        - heatpump/heatpump_3way_valve_dhw_heat
+        - heatpump/heatpump_3way_valve_heat_cool
+        - heatpump/heatpump_4way_valve_state
+        - heatpump/heatpump_anode
+        - heatpump/heatpump_base_pane_heater_state
+        - heatpump/heatpump_comp_discharge_temp
+        - heatpump/heatpump_compr_current
+        - heatpump/heatpump_compr_modulation
+        - heatpump/heatpump_compressor_state
+        - heatpump/heatpump_cond_pressure
+        - heatpump/heatpump_electric_heater
+        - heatpump/heatpump_evap_pressure
+        - heatpump/heatpump_evaporator_temp
+        - heatpump/heatpump_exp_valve
+        - heatpump/heatpump_ext_pump
+        - heatpump/heatpump_fan1_speed
+        - heatpump/heatpump_fan1_state
+        - heatpump/heatpump_fan2_speed
+        - heatpump/heatpump_fan2_state
+        - heatpump/heatpump_flow_switch
+        - heatpump/heatpump_info
+        - heatpump/heatpump_inverter_nominal_power
+        - heatpump/heatpump_last_error
+        - heatpump/heatpump_main_pump
+        - heatpump/heatpump_power_consumption
+        - heatpump/heatpump_preheater_state
+        - heatpump/heatpump_safety_thermostat
+        - heatpump/heatpump_shutoff_protection
+        - heatpump/pump_max_pwm
+        - heatpump/pump_min_pwm
+        - heatpump/pump_operation
+        - heatpump/silent_mode
+        - heatpump/heatpump_EWT_temp
+        - heatpump/heatpump_LWT_temp
+        - heatpump/heatpump_evaporator_temp
+        - heatpump/heatpump_suction_temp
+        - heatpump/heatpump_comp_discharge_temp
+        - heatpump/heatpump_condenser_outlet_temp
+        - heatpump/heatpump_flowmeter
+      sequence:
+        - action: mqtt.publish
+          data:
+            topic: ebusd/{{ repeat.item }}/get
+            payload: "?1"
+        - delay: "00:00:02"
+description: ""
+icon: mdi:source-branch-refresh

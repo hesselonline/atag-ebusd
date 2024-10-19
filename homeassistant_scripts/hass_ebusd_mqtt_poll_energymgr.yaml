@@ -1,0 +1,29 @@
+alias: Ebusd MQTT Poll EnergyManager
+sequence:
+  - repeat:
+      for_each:
+        - energymgr/config_version_counter
+        - energymgr/dhw_pv_delta_t_setp
+        - energymgr/dhw_store_temp
+        - energymgr/electric_cost
+        - energymgr/ext_boiler_dhw_efficiency
+        - energymgr/ext_boiler_heat_efficiency
+        - energymgr/ext_temp_offset
+        - energymgr/heat_mode
+        - energymgr/heating_mode
+        - energymgr/hybrid_logic
+        - energymgr/hybrid_mode
+        - energymgr/hybrid_status
+        - energymgr/protech_anode
+        - energymgr/pump_antiblock
+        - energymgr/pv_electric_cost
+        - energymgr/z1_night_temp
+        - energymgr/z1_room_temp
+      sequence:
+        - action: mqtt.publish
+          data:
+            topic: ebusd/{{ repeat.item }}/get
+            payload: "?1"
+        - delay: "00:00:02"
+description: ""
+icon: mdi:source-branch-refresh
