@@ -53,7 +53,7 @@ r,sensys,remote_command_sw_version,RC-SW-Ver,,75,2002,000000,ign,s,IGN:3,,,,valu
 r,sensys,boiler_sw_version,Boiler-SW-Ver,,3c,2002,000000,ign,s,IGN:1,,,,value,s,HEX:14
 r,sensys,energymgr_sw_version,Boiler-SW-Ver,,18,2002,000000,ign,s,IGN:1,,,,value,s,HEX:14
 r,sensys,heatpump_sw_version,Boiler-SW-Ver,,1e,2002,000000,ign,s,IGN:1,,,,value,s,HEX:14
-r,sensys,23_sw_version,Boiler-SW-Ver,,23,2002,000000,ign,s,IGN:1,,,,value,s,HEX:14
+# r,sensys,23_sw_version,Boiler-SW-Ver,,23,2002,000000,ign,s,IGN:1,,,,value,s,HEX:14
 
 
 ############################################################################################
@@ -134,7 +134,8 @@ r,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,18,2000,0081,,s,IGN:1,,,,,
 w,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,fe,2020,0081,,s,BCD
 r,energymgr,z1_heat_therm_type_selection,Z1 Heating Thermoreg Type Selection,,18,2000,C079,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 w,energymgr,z1_heat_therm_type_selection,Z1 Heating Thermoreg Type Selection,,fe,2020,C079,,s,BCD,
-r,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,,18,2000,6a71,,s,IGN:1,,,,,,UIN,100
+#r,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,,fe,2000,6a71,,s,IGN:1,,,,,,UIN,100
+r,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,13,fe,200e,6a71,,s,UIN,100
 w,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,,fe,2020,6a71,,s,UIN,100
 r,energymgr,z1_heat_offset,Z1 Heat Thermoreg Offset,,18,2000,6471,,s,IGN:1,,,,,,SCH,10
 w,energymgr,z1_heat_offset,Z1 Heat Thermoreg Offset,,fe,2020,6471,,s,SCH,10
@@ -279,8 +280,8 @@ b,energymgr,cool_slope,Cooling Slope,,fe,2020,7577,ign,m,IGN:4,,,,z1_cool_slope,
 #r,energymgr,z1_cool_therm_type_selection,Z1 Heating Thermoreg Type Selection,13,fe,2020,c97e04c97f04cb79,,s,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 #r,energymgr,z1_cool_offset,Z1 Cooling Offset,13,fe,200e,7571,,s,SIN,10,°C
 b,energymgr,hybrid_LWT_setpoint,Hybrid LWT Setpoint,,fe,2010,6047,,s,SIN,10,°C
-b,energymgr,night_temp_settings,,13,fe,2020,6277,6277_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z3_night_temp,m,SIN,10,°C
-b,energymgr,day_temp_settings,,13,fe,2020,6176,6176_UIN,m,SIN,10,°C,,,m,IGN:2,,,,6177_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_day_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_day_temp,m,SIN,10,°C
+#b,energymgr,night_temp_settings,,13,fe,2020,6277,6277_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z3_night_temp,m,SIN,10,°C
+#b,energymgr,day_temp_settings,,13,fe,2020,6176,6176_UIN,m,SIN,10,°C,,,m,IGN:2,,,,6177_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_day_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_day_temp,m,SIN,10,°C
 b,energymgr,day_temp_settings2,,13,fe,2020,6273,z3_day_temp,m,SIN,10,°C
 b,energymgr,dhw_comfort_temp,DHW Comfort Temp,,fe,200e,6126,,s,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,
 b,energymgr,dhw_economy_temp,DHW Economy Temp,,fe,200e,6226,,s,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,
@@ -313,7 +314,7 @@ w,energymgr,auto_function,Auto Function,,fe,2020,0520,,s,onoff
 ############################################################################################
 
 #Heatpump direct ask
-r,heatpump,silent_mode,Silent Mode,,18,2000,0320,,s,IGN:1,,,,,s,onoff
+r,heatpump,silent_mode,Silent Mode,,1e,2000,0320,,s,IGN:1,,,,,s,onoff
 w,heatpump,silent_mode,Silent Mode,,fe,2020,0320,,s,onoff
 #r,heatpump,heatpump_heating_flow_offset_temp,Heatpump Heating Flow Offset Temp,,1e,2000,7d2b,,s,IGN:1,,,,,,SIN,10,°C
 #r,heatpump,heatpump_cooling_flow_offset_temp,Heatpump Cooling Flow Offset Temp,,1e,2000,7f2b,,s,IGN:1,,,,,,SIN,10,°C
@@ -332,7 +333,7 @@ r,heatpump,heatpump_condenser_outlet_temp,Heatpump Condenser Outlet Temp,,1e,200
 r,heatpump,heatpump_teo_temp,Heatpump Condenser Outlet Water Temp,,1e,2000,7417,,s,IGN:1,,,,,,SIN,10,°C
 #Menu - HP Diagnostic 2 Menu
 r,heatpump,heatpump_mode,Heatpump Operating Mode,,1e,2000,ca46,,s,IGN:1,,,,,,UCH,0=OFF;1=Stand_by;2=Cooling;3=Heating;4=Heating_boost;5=Cooling_boost;6=Heating_rating;7=Cooling_rating;8=Antifreeze;9=Defrost;10=Overtemp_prot;11=Timeguard;12=System_error;13=Reset_service;14=Coolant_recovery;15=Soft_fail,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-r,heatpump,heatpump_last_error,Heatpump Last Error - TBC,,18,2000,c54b,,s,IGN:1,,,,,,BCD
+r,heatpump,heatpump_last_error,Heatpump Last Error - TBC,,1e,2000,c54b,,s,IGN:1,,,,,,BCD
 r,heatpump,heatpump_safety_thermostat,Heatpump Safety Thermostat,,18,2000,1A11,,s,IGN:1,,,,,,BCD,0=open;1=closed,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 r,heatpump,heatpump_flowmeter,Heatpump Flow Meter,,1e,2000,6e13,,s,IGN:1,,,,,,UIN,10,L
 r,heatpump,heatpump_flow_switch,Flow Switch State,,1e,2000,0c45,,s,IGN:1,,,,,,BCD,0=open;1=closed
@@ -390,7 +391,7 @@ r,heatpump,heatpump_power_consumption,Heatpump Power Consumption,,1e,2000,63477c
 #Message not sent anymore (FW update??)
 #r,heatpump,compressor_info,Heatpump Compressor Data,7f,1e,2000,cb4673177217,,s,IGN:1,,,,compressor_frequency,s,UCH,,Hz,,compressor_suction_temp,s,SIN,10,°C,,compressor_discharge_temp,s,SIN,10,°C
 r,heatpump,compressor_info2,Heatpump Compressor Data2,13,1e,2000,72177317ca466247,,s,IGN:1,,,,compressor_suction_temp,s,SIN,10,°C,,compressor_discharge_temp,s,SIN,10,°C
-r,heatpump,compressor_info,Heatpump Compressor Data,13,1e,2000,6e13cb46d84b,,s,IGN:1,,,,flow_meter,s,UIN,10,L,,compressor_frequency,s,UCH,,,,684b,s,UCH,1,X
+#r,heatpump,compressor_info,Heatpump Compressor Data,13,1e,2000,6e13cb46d84b,,s,IGN:1,,,,flow_meter,s,UIN,10,L,,compressor_frequency,s,UCH,,,,684b,s,UCH,1,X
 
 #r,heatpump,water_flow_info,Heatpump Water Flow Data,13,1e,2000,7610771079106e13,,s,IGN:1,,,,LWT_temp,s,SIN,10,°C,,EWT_temp,s,SIN,10,°C,,evaporator_temp,s,SIN,10,°C,,flow_meter,s,UIN,10,L
 r,heatpump,coolat_data,Heatpump Coolant Data,13,1e,2000,7610771079107117,,s,IGN:1,,,,LWT_temp,s,SIN,10,°C,,EWT_temp,s,SIN,10,°C,,evaporator_temp,s,SIN,10,°C,,coolant_temp,s,SIN,10,°C
