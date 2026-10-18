@@ -118,10 +118,11 @@ w,energymgr,hybrid_logic,Hybrid Logic,,fe,2020,ce28,,s,BCD
 
 #Z1 Setpoint
 r,energymgr,z1_day_temp,Z1 Day Temp,,18,2000,6271,,s,IGN:1,,,,,,SIN,10,°C
-w,energymgr,z1_day_temp,,,fe,200e,6271,,s,SIN,10,°C
+w,energymgr,z1_day_temp,Z1 Day Temp,,fe,2020,6271,,s,SIN,10,°C
 r,energymgr,z1_night_temp,Z1 Night Temp,,18,2000,6371,,s,IGN:1,,,,,,SIN,10,°C
-w,energymgr,z1_night_temp,,,fe,2020,6371,,s,SIN,10,°C
-r,energymgr,z1_heat_setpoint_temp_set,Z1 Heat Set Temp,,fe,200e,6571,,s,IGN:1,,,,,,SIN,10,°C
+w,energymgr,z1_night_temp,Z1 Night Temp,,fe,2020,6371,,s,SIN,10,°C
+# Reference correction: context/ariston.csv defines z1_heat_setpoint_temp_set as direct read 18/2000/6571; the ATAG line's fe/200e request did not match that read pattern.
+r,energymgr,z1_heat_setpoint_temp_set,Z1 Heat Set Temp,,18,2000,6571,,s,IGN:1,,,,,,SIN,10,°C
 w,energymgr,z1_heat_setpoint_temp_set,Z1 Heat Set Temp,,fe,2020,6571,,s,SIN,10,°C
 r,energymgr,antifreeze_temp,Antifreeze Temp,,18,2000,6426,,s,IGN:1,,,,,,SIN,10,°C
 #Z1 Summer Winter Changeover
@@ -134,18 +135,19 @@ r,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,18,2000,0081,,s,IGN:1,,,,,
 w,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,fe,2020,0081,,s,BCD
 r,energymgr,z1_heat_therm_type_selection,Z1 Heating Thermoreg Type Selection,,18,2000,C079,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 w,energymgr,z1_heat_therm_type_selection,Z1 Heating Thermoreg Type Selection,,fe,2020,C079,,s,BCD,
-#r,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,,fe,2000,6a71,,s,IGN:1,,,,,,UIN,100
-r,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,13,fe,200e,6a71,,s,UIN,100
+# Disabled direct read: the active MQTT log still reports ERR: invalid position for this request, while the raw broadcast provides the known Z1 value 0.40.
+r,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,,18,2000,6a71,,s,IGN:1,,,,,,UIN,100
 w,energymgr,z1_heat_slope,Z1 Heat Thermoreg Slope,,fe,2020,6a71,,s,UIN,100
 r,energymgr,z1_heat_offset,Z1 Heat Thermoreg Offset,,18,2000,6471,,s,IGN:1,,,,,,SCH,10
-w,energymgr,z1_heat_offset,Z1 Heat Thermoreg Offset,,fe,2020,6471,,s,SCH,10
+w,energymgr,z1_heat_offset,Z1 Heat Thermoreg Offset,,fe,2020,6471,,s,SIN,10
 r,energymgr,z1_heat_room_temp_infl,Z1 Heating Room Temp Influence,,18,2000,c279,,s,IGN:1,,,,,,UCH
 w,energymgr,z1_heat_room_temp_infl,Z1 Heating Room Temp Influence,,fe,2020,c279,,s,UCH
 r,energymgr,z1_heat_water_max_temp,Z1 Heating Max Water Temp,,18,2000,6071,,s,IGN:1,,,,,,SIN,10,°C
 w,energymgr,z1_heat_water_max_temp,Z1 Heating Max Water Temp,,fe,2020,6071,,s,SIN,10,°C
 r,energymgr,z1_heat_water_min_temp,Z1 Heating Min Water Temp,,18,2000,6171,,s,IGN:1,,,,,,SIN,10,°C
 w,energymgr,z1_heat_water_min_temp,Z1 Heating Min Water Temp,,fe,2020,6171,,s,SIN,10,°C
-r,energymgr,z1_heat_request_mode,Z1 Heating Request Mode,,18,2000,ce79,,s,IGN:1,,,,,,BCD,0=standard;1=no_time_program;2=forced
+# Direct-read correction: name both fields explicitly like the working composite definitions; response 0100 is ignored prefix 01 plus mode 00 (standard), matching broadcast ce7900.
+r,energymgr,z1_heat_request_mode,Z1 Heating Request Mode,,18,2000,ce79,ign,s,IGN:1,,,,z1_heat_request_mode,s,BCD,0=standard;1=no_time_program;2=forced
 w,energymgr,z1_heat_request_mode,Z1 Heating Request Mode,,fe,2020,ce79,,s,BCD
 
 #Z1 Diagnostic
@@ -179,11 +181,12 @@ r,energymgr,z2_summer_winter_switch_delay_time,Z2 Summer Winter Switch Delay Tim
 r,energymgr,z2_heat_temp_range,Z2 Heating Temp Range,,18,2000,0082,,s,IGN:1,,,,,,BCD,0=low;1=high
 r,energymgr,z2_heat_therm_type_selection,Z2 Heating Thermoreg Type Selection,,18,2000,c07a,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 r,energymgr,z2_heat_slope,Z2 Heat Thermoreg Slope,,18,2000,6a72,,s,IGN:1,,,,,,UIN,100
-#r,energymgr,z2_heat_offset,Z2 Heat Thermoreg Offset,,18,2000,6472,,s,IGN:1,,,,,,SCH,10
+r,energymgr,z2_heat_offset,Z2 Heat Thermoreg Offset,,18,2000,6472,,s,IGN:1,,,,,,SCH,10
 r,energymgr,z2_heat_room_temp_infl,Z2 Heating Room Temp Influence,,18,2000,c27a,,s,IGN:1,,,,,,UCH
 r,energymgr,z2_heat_water_max_temp,Z2 Heating Max Water Temp,,18,2000,6072,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z2_heat_water_min_temp,Z2 Heating Min Water Temp,,18,2000,6172,,s,IGN:1,,,,,,SIN,10,°C
-r,energymgr,z2_heat_request_mode,Z2 Heating Request Mode,,18,2000,ce7a,,s,IGN:1,,,,,,BCD,0=standard;1=no_time_program;2=forced
+# Structural correction: name both fields explicitly and use the same two-byte layout as Z1.
+r,energymgr,z2_heat_request_mode,Z2 Heating Request Mode,,18,2000,ce7a,ign,s,IGN:1,,,,z2_heat_request_mode,s,BCD,0=standard;1=no_time_program;2=forced
 #Z2 Diagnostic
 r,energymgr,z2_room_temp,Z2 Room Temp,,18,200f,7218,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z2_setpoint_temp,Z2 Current Setpoint,,18,2000,6a96,,s,IGN:1,,,,,,SIN,10,°C
@@ -209,12 +212,14 @@ r,energymgr,z3_summer_winter_switch_delay_time,Z3 Summer Winter Switch Delay Tim
 #Z3 Heating Settings
 r,energymgr,z3_heat_temp_range,Z3 Heating Temp Range,,18,2000,0083,,s,IGN:1,,,,,,BCD,0=low;1=high
 r,energymgr,z3_heat_therm_type_selection,Z3 Heating Thermoreg Type Selection,,18,2000,c07b,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
+# Disabled unused direct read: Z3 is not configured in this installation and its slope value is intentionally left unknown.
 r,energymgr,z3_heat_slope,Z3 Heat Thermoreg Slope,,18,2000,6a73,,s,IGN:1,,,,,,UIN,100
-#r,energymgr,z3_heat_offset,Z3 Heat Thermoreg Offset,,18,2000,6473,,s,IGN:1,,,,,,SCH,10
+r,energymgr,z3_heat_offset,Z3 Heat Thermoreg Offset,,18,2000,6473,,s,IGN:1,,,,,,SCH,10
 r,energymgr,z3_heat_room_temp_infl,Z3 Heating Room Temp Influence,,18,2000,c27b,,s,IGN:1,,,,,,UCH
 r,energymgr,z3_heat_water_max_temp,Z3 Heating Max Water Temp,,18,2000,6073,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z3_heat_water_min_temp,Z3 Heating Min Water Temp,,18,2000,6173,,s,IGN:1,,,,,,SIN,10,°C
-r,energymgr,z3_heat_request_mode,Z3 Heating Request Mode,,18,2000,ce7b,,s,IGN:1,,,,,,BCD,0=standard;1=no_time_program;2=forced
+# Structural correction: name both fields explicitly and use the same two-byte layout as Z1.
+r,energymgr,z3_heat_request_mode,Z3 Heating Request Mode,,18,2000,ce7b,ign,s,IGN:1,,,,z3_heat_request_mode,s,BCD,0=standard;1=no_time_program;2=forced
 #Z3 Diagnostics
 r,energymgr,z3_room_temp,Z3 Room Temp,,18,2000,7318,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z3_setpoint_temp,Z3 Current Setpoint,,18,2000,6b96,,s,IGN:1,,,,,,SIN,10,°C
@@ -265,10 +270,12 @@ b,energymgr,z3_day_temp_bcast,Z3 Day temperature,,fe,200f,6273,,m,SIN,10,°C
 b,energymgr,z1_night_temp_bcast,Z1 Night temperature,,fe,200f,6371,,m,SIN,10,°C
 b,energymgr,z2_night_temp_bcast,Z2 Night temperature,,fe,200f,6372,,m,SIN,10,°C
 b,energymgr,z3_night_temp_bcast,Z3 Night temperature,,fe,200f,6373,,m,SIN,10,°C
-b,energymgr,antifreeze_temp_bcast,Antifreeze temperature,,fe,200e,6426,antifreeze_temp_temp,s,IGN:1,,,,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,
+b,energymgr,antifreeze_temp_bcast,Antifreeze temperature,,fe,200e,6426,antifreeze_temp,s,IGN:1,,,,,,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,
 b,energymgr,heat_temp_range,Heating Temp Range,13,fe,2020,0081,z1_heat_range,s,BCD,0=low;1=high,,,,s,IGN:2,,,,z2_heat_range,s,BCD,0=low;1=hign,,,,s,IGN:2,,,,z3_heat_range,s,BCD,0=low;1=high
 b,energymgr,heat_therm_type_selection,Heating Thermolregulation Type,,fe,200f,c079,z1_therm_type,s,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room,,,,s,IGN:3,,,,z2_therm_type,s,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room,,,,s,IGN:3,,,,z3_therm_type,s,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
-b,energymgr,heat_slope,Heating Slope,,fe,2020,6a71,z1_heat_slope,m,UIN,100,,,,m,IGN:2,,,,z2_heat_slope,m,UIN,100,,,,m,IGN:2,,,,z3_heat_slope,m,UIN,100
+b,energymgr,z1_heat_slope_bcast,Z1 Heating Slope,,fe,2020,6971,,m,IGN:4,,,,z1_heat_slope,m,UIN,100,,,,m,IGN:4
+b,energymgr,z2_heat_slope_bcast,Z2 Heating Slope,,fe,2020,6a72,,m,IGN:4,,,,z2_heat_slope,m,UIN,100,,,,m,IGN:4
+b,energymgr,z3_heat_slope_bcast,Z3 Heating Slope,,fe,2020,6973,,m,IGN:4,,,,z3_heat_slope,m,UIN,100,,,,m,IGN:4
 b,energymgr,z1_heat_offset_bcast,Z1 Heating Offset,,fe,200e,6471,z1_heat_offset,s,SIN,10,°C
 b,energymgr,z1_heat_offset_bcast_bis,Z1 Heating Offset,,fe,200f,6471,z1_heat_offset,s,SIN,10,°C
 b,energymgr,z2_heat_offset_bcast,Z2 Heating Offset,13,fe,200e,6472,,m,SIN,10,°C
@@ -280,9 +287,9 @@ b,energymgr,cool_slope,Cooling Slope,,fe,2020,7577,ign,m,IGN:4,,,,z1_cool_slope,
 #r,energymgr,z1_cool_therm_type_selection,Z1 Heating Thermoreg Type Selection,13,fe,2020,c97e04c97f04cb79,,s,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 #r,energymgr,z1_cool_offset,Z1 Cooling Offset,13,fe,200e,7571,,s,SIN,10,°C
 b,energymgr,hybrid_LWT_setpoint,Hybrid LWT Setpoint,,fe,2010,6047,,s,SIN,10,°C
-#b,energymgr,night_temp_settings,,13,fe,2020,6277,6277_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z3_night_temp,m,SIN,10,°C
-#b,energymgr,day_temp_settings,,13,fe,2020,6176,6176_UIN,m,SIN,10,°C,,,m,IGN:2,,,,6177_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_day_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_day_temp,m,SIN,10,°C
-b,energymgr,day_temp_settings2,,13,fe,2020,6273,z3_day_temp,m,SIN,10,°C
+#b,energymgr,night_temp_settings,Night Temp Settings,13,fe,2020,6277,6277_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_night_temp,m,SIN,10,°C,,,m,IGN:2,,,,z3_night_temp,m,SIN,10,°C
+#b,energymgr,day_temp_settings,Day Temp Settings,13,fe,2020,6176,6176_UIN,m,SIN,10,°C,,,m,IGN:2,,,,6177_UIN,m,SIN,10,°C,,,m,IGN:2,,,,z1_day_temp,m,SIN,10,°C,,,m,IGN:2,,,,z2_day_temp,m,SIN,10,°C
+b,energymgr,day_temp_settings2,Z3 Day Temp,13,fe,2020,6273,z3_day_temp,m,SIN,10,°C
 b,energymgr,dhw_comfort_temp,DHW Comfort Temp,,fe,200e,6126,,s,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,
 b,energymgr,dhw_economy_temp,DHW Economy Temp,,fe,200e,6226,,s,SIN,10,°C,,,,,,,,,,,,,,,,,,,,,,
 b,energymgr,dhw_comfort_mode,DHW Comfort Mode,,fe,200e,c028,,s,BCD,0=off;1=timed;2=always_on
@@ -449,7 +456,7 @@ r,boiler,config_version_counter,System Configuration Change Counter,,3c,2000,d14
 #Support for ELCO Aerotop Split specific message codes
 #r,heatpump,elco_hp_LWT_temp,Heating Water Flow Temp,,18,2000,6310,,s,IGN:1,,,,,,SIN,10,°C
 #r,heatpump,elco_hp_EWT_temp,Heating Water Return Temp,,18,2000,6610,,s,IGN:1,,,,,,SIN,10,°C
-#r,heatpump,elco_hp_return_temp,,,fe,2010,759e,,s,IGN:5,,,,elco_hp_return_temp,s,S3N,10,°C
+#r,heatpump,elco_hp_return_temp,ELCO Heat Pump Return Temp,,fe,2010,759e,,s,IGN:5,,,,elco_hp_return_temp,s,S3N,10,°C
 
 
 

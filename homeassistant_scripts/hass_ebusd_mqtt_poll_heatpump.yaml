@@ -4,7 +4,8 @@ sequence:
       for_each:
         - heatpump/boost_time
         - heatpump/config_version_counter
-        - heatpump/cool_ext_temp_offset
+        # CSV service is heatpump/cool_LWT_temp_offset (atag_energion_lightb.csv, heatpump cooling settings).
+        - heatpump/cool_LWT_temp_offset
         - heatpump/heatpump_3way_valve_dhw_heat
         - heatpump/heatpump_3way_valve_heat_cool
         - heatpump/heatpump_4way_valve_state

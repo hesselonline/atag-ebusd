@@ -1,7 +1,8 @@
 # template name,type / templates,divider / values,unit,comment
 onoff,BCD,0=off;1=on,,
 heat_thermoreg_types,UCH,0=fixed_temp;1=basic_on_off;2=room_temp_only;3=outdoor_temp_only;4=outdoor_and_room
-cool_thermoreg_types,UCH,0=on-off;1=fixed_temp;2=toom_temp,,
+# Local template correction: fix the enum label typo so the value matches the z1/z2/z3 cooling definitions.
+cool_thermoreg_types,UCH,0=on-off;1=fixed_temp;2=room_temp,,
 hybrid_mode,UCH,0=auto;1=boiler_only;2=hp_only,,
 heat_request_mode,UCH,0=standard;1=no_time_program;2=forced,,
 heat_temp_range,UCH,0=underfloorheating;1=fancoil,,
