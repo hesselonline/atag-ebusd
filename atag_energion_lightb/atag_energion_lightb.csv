@@ -130,9 +130,9 @@ r,energymgr,z1_summer_winter_auto_switch,Z1 Summer Winter Auto Switch,,18,2000,0
 r,energymgr,z1_summer_winter_temp_thresh,Z1 Summer Winter Threshold Temp,,18,2000,7971,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z1_summer_winter_switch_delay_time,Z1 Summer Winter Switch Delay Time,,18,2000,7A71,,s,IGN:1,,,,,,UIN,,min
 #Z1 Heating Settings
-#r,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,18,2000,0081,,s,IGN:1,,,,,,BCD,0=low;1=high
-r,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,18,2000,0081,,s,IGN:1,,,,,,BCD
-w,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,fe,2020,0081,,s,BCD
+#r,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,18,2000,0081,,s,IGN:1,,,,,,BCD,0=LT;1=HT
+r,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,18,2000,0081,,s,IGN:1,,,,,,BCD,0=LT;1=HT
+w,energymgr,z1_heat_temp_range,Z1 Heating Temp Range,,fe,2020,0081,,s,BCD,0=LT;1=HT
 r,energymgr,z1_heat_therm_type_selection,Z1 Heating Thermoreg Type Selection,,18,2000,C079,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 w,energymgr,z1_heat_therm_type_selection,Z1 Heating Thermoreg Type Selection,,fe,2020,C079,,s,BCD,
 # Disabled direct read: the active MQTT log still reports ERR: invalid position for this request, while the raw broadcast provides the known Z1 value 0.40.
@@ -157,10 +157,9 @@ r,energymgr,z1_heat_request,Z1 Heating Request,,18,200f,0191,,s,IGN:1,,,,,s,onof
 #Z1 Cooling Settings
 r,energymgr,z1_cool_setpoint_temp_set,Z1 Cooling Set Temp,,18,2000,7071,,s,IGN:1,,,,,,SIN,10,°C
 w,energymgr,z1_cool_setpoint_temp_set,Z1 Cooling Set Temp,,fe,2020,7071,,s,SIN,10,°C
-#r,energymgr,z1_cool_temp_range,Z1 cooling Temp Range,,18,2000,0681,,s,IGN:1,,,,,,BCD,0=fancoil;1=underfloorheating
-r,energymgr,z1_cool_temp_range,Z1 cooling Temp Range,,18,2000,0681,,s,IGN:1,,,,,,BCD
+r,energymgr,z1_cool_temp_range,Z1 cooling Temp Range,,18,2000,0681,,s,IGN:1,,,,,,BCD,0=Fancoil;1=Floor Cooling
 
-w,energymgr,z1_cool_temp_range,Z1 cooling Temp Range,,fe,2020,0681,,s,BCD
+w,energymgr,z1_cool_temp_range,Z1 cooling Temp Range,,fe,2020,0681,,s,BCD,0=Fancoil;1=Floor Cooling
 r,energymgr,z1_cool_therm_type_selection,Z1 Cooling Thermoreg Type Selection,,18,2000,CB79,,s,IGN:1,,,,,,BCD,0=on-off;1=fixed_temp;2=toom_temp
 w,energymgr,z1_cool_therm_type_selection,Z1 Cooling Thermoreg Type Selection,,fe,2020,CB79,,s,BCD
 r,energymgr,z1_cool_slope,Z1 Cool Thermoreg Slope,,18,2000,7671,,s,IGN:1,,,,,,UIN,100
@@ -178,7 +177,7 @@ r,energymgr,z2_summer_winter_auto_switch,Z2 Summer Winter Auto Switch,,18,2000,0
 r,energymgr,z2_summer_winter_temp_thresh,Z2 Summer Winter Threshold Temp,,18,2000,7972,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z2_summer_winter_switch_delay_time,Z2 Summer Winter Switch Delay Time,,18,2000,7A72,,s,IGN:1,,,,,,UIN,,min
 #Z2 Heating Settings
-r,energymgr,z2_heat_temp_range,Z2 Heating Temp Range,,18,2000,0082,,s,IGN:1,,,,,,BCD,0=low;1=high
+r,energymgr,z2_heat_temp_range,Z2 Heating Temp Range,,18,2000,0082,,s,IGN:1,,,,,,BCD,0=LT;1=HT
 r,energymgr,z2_heat_therm_type_selection,Z2 Heating Thermoreg Type Selection,,18,2000,c07a,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 r,energymgr,z2_heat_slope,Z2 Heat Thermoreg Slope,,18,2000,6a72,,s,IGN:1,,,,,,UIN,100
 r,energymgr,z2_heat_offset,Z2 Heat Thermoreg Offset,,18,2000,6472,,s,IGN:1,,,,,,SCH,10
@@ -193,7 +192,7 @@ r,energymgr,z2_setpoint_temp,Z2 Current Setpoint,,18,2000,6a96,,s,IGN:1,,,,,,SIN
 r,energymgr,z2_heat_request,Z2 Heating Request,,18,2000,0291,,s,IGN:1,,,,,s,onoff
 #Z2 Cooling Settings
 r,energymgr,z2_cool_setpoint_temp_set,Z2 Cooling Set Temp,,18,2000,7072,,s,IGN:1,,,,,,SIN,10,°C
-r,energymgr,z2_cool_temp_range,Z2 cooling Temp Range,,18,2000,0682,,s,IGN:1,,,,,,BCD,0=fancoil;1=underfloorheating
+r,energymgr,z2_cool_temp_range,Z2 cooling Temp Range,,18,2000,0682,,s,IGN:1,,,,,,BCD,0=Fancoil;1=Floor Cooling
 r,energymgr,z2_cool_therm_type_selection,Z2 Cooling Thermoreg Type Selection,,18,2000,CB7a,,s,IGN:1,,,,,,BCD,0=on-off;1=fixed_temp;2=toom_temp
 r,energymgr,z2_cool_slope,Z2 Cool Thermoreg Slope,,18,2000,7672,,s,IGN:1,,,,,,UIN,100
 r,energymgr,z2_cool_offset,Z2 Cool Thermoreg Offset,,18,2000,7572,,s,IGN:1,,,,,,SCH,10
@@ -210,7 +209,7 @@ r,energymgr,z3_summer_winter_auto_switch,Z3 Summer Winter Auto Switch,,18,2000,0
 r,energymgr,z3_summer_winter_temp_thresh,Z3 Summer Winter Threshold Temp,,18,2000,7973,,s,IGN:1,,,,,,SIN,10,°C
 r,energymgr,z3_summer_winter_switch_delay_time,Z3 Summer Winter Switch Delay Time,,18,2000,7A73,,s,IGN:1,,,,,,UIN,,min
 #Z3 Heating Settings
-r,energymgr,z3_heat_temp_range,Z3 Heating Temp Range,,18,2000,0083,,s,IGN:1,,,,,,BCD,0=low;1=high
+r,energymgr,z3_heat_temp_range,Z3 Heating Temp Range,,18,2000,0083,,s,IGN:1,,,,,,BCD,0=LT;1=HT
 r,energymgr,z3_heat_therm_type_selection,Z3 Heating Thermoreg Type Selection,,18,2000,c07b,,s,IGN:1,,,,,,BCD,0=fixed_temp;1=basic_on_off;2=outdoor_temp_only;3=room_temp_only;4=outdoor_and_room
 # Disabled unused direct read: Z3 is not configured in this installation and its slope value is intentionally left unknown.
 r,energymgr,z3_heat_slope,Z3 Heat Thermoreg Slope,,18,2000,6a73,,s,IGN:1,,,,,,UIN,100
@@ -226,7 +225,7 @@ r,energymgr,z3_setpoint_temp,Z3 Current Setpoint,,18,2000,6b96,,s,IGN:1,,,,,,SIN
 r,energymgr,z3_heat_request,Z3 Heating Request,,18,2000,0391,,s,IGN:1,,,,,s,onoff
 #Z3 Cooling Settings
 r,energymgr,z3_cool_setpoint_temp_set,Z3 Cooling Set Temp,,18,2000,7073,,s,IGN:1,,,,,,SIN,10,°C
-r,energymgr,z3_cool_temp_range,Z3 cooling Temp Range,,18,2000,0683,,s,IGN:1,,,,,,BCD,0=fancoil;1=underfloorheating
+r,energymgr,z3_cool_temp_range,Z3 cooling Temp Range,,18,2000,0683,,s,IGN:1,,,,,,BCD,0=Fancoil;1=Floor Cooling
 r,energymgr,z3_cool_therm_type_selection,Z3 Cooling Thermoreg Type Selection,,18,2000,cb7b,,s,IGN:1,,,,,,BCD,0=on-off;1=fixed_temp;2=toom_temp
 r,energymgr,z3_cool_slope,Z3 Cool Thermoreg Slope,,18,2000,7673,,s,IGN:1,,,,,,UIN,100
 r,energymgr,z3_cool_offset,Z3 Cool Thermoreg Offset,,18,2000,7573,,s,IGN:1,,,,,,SCH,10
